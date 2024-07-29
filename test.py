@@ -43,7 +43,22 @@ import numpy as np
 # print(f"Somente a partir do segundo caracter {nome[1:]}")
 
 # Tuplas
-tupla = (1,2,3,4,5)
-print(tupla[0])
-print(tupla[-1])
-print(tupla[:3])
+# tupla = (1,2,3,4,5)
+# print(tupla[0])
+# print(tupla[-1])
+# print(tupla[:3])
+
+# n = int(input("Quantos registros: "))
+# lista = []
+# for i in range (n):
+#     tupla = input("Nome, Idade e Nota:\n").split()
+#     nome = tupla[0]
+#     idade = int(tupla[1])
+#     nota = int(tupla[2])
+#     lista.append((nome,idade,nota))
+# print(lista)
+
+# conjuntos = {1,2,3, "Caio"}
+# dicionario = {"nome":"Caio","Idade":89}
+# dicionario["nota"]=10
+# print(dicionario)
