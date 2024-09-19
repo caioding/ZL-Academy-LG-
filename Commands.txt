@@ -1,5 +1,7 @@
 pip install botcity-http-plugin
 
+# Cria o ammbiente
 python -m venv env_api_database
 
+# Ativa o ambiente
 .\env_api_database\Scripts\Activate.bat
