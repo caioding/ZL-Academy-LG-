@@ -41,6 +41,9 @@ def lista_usuarios():
             )
     except Exception as ex:
         print(f'Erro: Listar usuario: {ex}')
+    finally:
+        cursor.close()
+        conect.close()
     
     return usuarios
 # Fim: lista_usuarios() 
@@ -81,6 +84,9 @@ def criar_usuario(usuario):
         conect.commit()
     except Exception as ex:
         print(f'Erro: Falha na inclusão: {ex}')
+    finally:
+        cursor.close()
+        conect.close()
 
     return last_id 
 # Fim: criar_usuario(usuario)
