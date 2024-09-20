@@ -25,7 +25,7 @@ def exist_product(id):
 def create_product(produto):
     try:
         # Manipular o banco de dados
-        conect = database.criar_db()
+        conect = database.create_db()
         cursor = conect.cursor()
         sql = f"INSERT INTO produto(descricao, unidade, quantidade, preco_real, preco_dolar) VALUES('{produto['descricao']}','{produto['unidade']}', '{produto['quantidade']}', '{produto['preco_real']}','{produto['preco_dolar']}')"
         print(sql)
@@ -39,3 +39,32 @@ def create_product(produto):
         conect.close()
 
     return last_id 
+
+# Lista de produtos
+
+def list_products():
+    products = list()
+    try:
+        conect = database.create_db()
+        cursor = conect.cursor()
+        sql = 'SELECT * FROM produto ORDER BY descricao'
+        cursor.execut(sql)
+        list_product = cursor.fetchall()
+        # Tratar dados para uma estrutura JSON
+        for product in list_product:
+            products.append(
+                {
+                  'id': product[0],
+                  'nome': product[1],
+                  'login': product[2],
+                  'senha': product[3],
+                  'email': product[4]
+                }
+            )
+    except Exception as ex:
+        print(f'Erro: Listar usuario: {ex}')
+    finally:
+        cursor.close()
+        conect.close()
+    
+    return products
