@@ -99,5 +99,4 @@ def blackjack():
             print("Empate!")
 
 if __name__ == "__main__":
-    blackjack()
-    
+    blackjack() 
