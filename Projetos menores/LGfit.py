@@ -1,6 +1,4 @@
-clients = [
-
-]
+clients = []
 
 def menu():
     print("\n\n--- Menu ---")
@@ -11,24 +9,27 @@ def clients_data():
     file_path = r'C:\Users\noturno\Desktop\Caio\registro_clientes.txt'
 
     try:
-        file = open(file_path, 'w')
-        for client in clients:
-            file.write(f"Nome: {client['nome']}\n")
-            file.write(f"Idade: '{client['idade']}\n")
-            file.write(f"Peso: '{client['peso']}\n")
-            file.write(f"Altura: '{client['altura']}\n")
-            file.write(f"Sexo: '{client['sexo']}\n")
-            file.write("\n")
+        with open(file_path, 'a') as file:  # 'a' to append new clients
+            for client in clients:
+                file.write(f"Nome: {client['nome']}\n")
+                file.write(f"Idade: {client['idade']}\n")
+                file.write(f"Peso: {client['peso']}\n")
+                file.write(f"Altura: {client['altura']}\n")
+                file.write(f"Sexo: {client['sexo']}\n")
+                file.write("\n")
+        print("\nDados dos clientes registrados com sucesso.")
+    except Exception as e:
+        print(f"Erro ao salvar os dados: {e}")
 
 def client_inputs():
     global clients
     name = input('Digite seu nome: ')
     age = int(input('Digite sua idade: '))
-    weight = float(input('Digite seu peso'))
-    height = float(input('Digite sua altura'))
-    sex = str('Informe seu sexo: M (masculino) ou F(feminino): ')
+    weight = float(input('Digite seu peso: '))
+    height = float(input('Digite sua altura: '))
+    sex = input('Informe seu sexo: M (masculino) ou F (feminino): ').upper()
 
-    new_client =  {
+    new_client = {
         'nome': name,
         'idade': age,
         'peso': weight,
@@ -37,4 +38,18 @@ def client_inputs():
     }
 
     clients.append(new_client)
-    print(f'\nCliente {name} matriculado com seucesso!')
+    print(f'\nCliente {name} matriculado com sucesso!')
+
+# Main program
+while True:
+    menu()
+    option = input("Escolha uma opção: ")
+    
+    if option == '1':
+        client_inputs()
+        clients_data()
+    elif option == '2':
+        print("Encerrando programa...")
+        break
+    else:
+        print("Opção inválida, tente novamente.")
