@@ -57,7 +57,7 @@ Content-Type: application/json
 
 // Alterar produto pelo ID
 // OBS: obrigado preencher o campo ID
-PUT http://127.0.0.1:5000/product 
+PUT http://127.0.0.1:5000/produto 
 Content-Type: application/json
 // OBS: É necessário pular uma linha, quando existir um corpo (body) 
 
@@ -72,17 +72,17 @@ Content-Type: application/json
 ###
 
 // Obter produto pelo ID
-GET http://localhost:5000/product/3
+GET http://localhost:5000/produto/1
 Content-Type: application/json
 ###
 
 // Deletar produto pelo ID
-DELETE http://127.0.0.1:5000/usuario/3
+DELETE http://127.0.0.1:5000/produto/3
 Content-Type: application/json
 ###
 
 // Listar todos os produtos em ordem alfabética
-GET http://localhost:8080/product/list 
+GET http://localhost:5000/produto/list
 Content-Type: application/json
 ###
 

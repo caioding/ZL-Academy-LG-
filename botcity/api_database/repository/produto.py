@@ -37,7 +37,7 @@ def atualizar_produto(produto):
         conect.close()
     return last_id
 
-# Função 4 - Verifica se o produto existe
+# Função 3 - Verifica se o produto existe
 def existe_produto(id):
     existe: False
     # criar uma tupla vazia
@@ -64,7 +64,7 @@ def existe_produto(id):
 
     return existe
 
-# Função 5 - Obtem produto por ID
+# Função 4 - Obtem produto por ID
 def obter_produto_id(id):
     # Declar uma tupla vazia
     produto = ()
@@ -81,7 +81,7 @@ def obter_produto_id(id):
         conect.close()
     return produto
 
-# Função 6 - Lista o produto
+# Função 5 - Lista os produtos
 def lista_produto():
     produtos = list()
     try:
@@ -110,7 +110,7 @@ def lista_produto():
 
     return produtos
 
-
+# Função 6 - Deleta o produto
 def deletar_produto(id):
     try:
         # Manipular o banco de dados
