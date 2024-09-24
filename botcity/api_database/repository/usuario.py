@@ -1,6 +1,5 @@
 import database 
 
-
 # Verificar se Usuário existe
 def existe_usuario(id):
     existe: False

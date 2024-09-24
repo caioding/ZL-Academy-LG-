@@ -1,20 +1,20 @@
 // Inserir produto
-POST http://127.0.0.1:5000/product
+POST http://127.0.0.1:5000/produto
 Content-Type: application/json
 // OBS: É necessário pular uma linha, quando existir um corpo (body) 
 
 {
-  "descricao" : "Arroz",
-  "unidade" : "Kg",
-  "quantidade" : 3,
-  "preco_real" : 5.60,
-  "preco_dolar": 25
+    "descricao" : "Arroz",
+    "unidade" : "Kg",
+    "quantidade" : 3,
+    "preco_real" : 5.60,
+    "preco_dolar": 25
 }
 // Utiliza-se obrigatoriamente no início da linha os simbolos: ###
 // para separar uma requisção da outra. 
 ###
 
-POST http://127.0.0.1:5000/product
+POST http://127.0.0.1:5000/produto
 Content-Type: application/json
 // OBS: É necessário pular uma linha, quando existir um corpo (body) 
 
@@ -29,7 +29,7 @@ Content-Type: application/json
 // para separar uma requisção da outra. 
 ###
 
-POST http://127.0.0.1:5000/product
+POST http://127.0.0.1:5000/produto
 Content-Type: application/json
 // OBS: É necessário pular uma linha, quando existir um corpo (body) 
 
@@ -45,13 +45,13 @@ Content-Type: application/json
 ###
 
 //Listar todos os produtos em ordem alfabética
-GET http://127.0.0.1:5000/product 
+GET http://127.0.0.1:5000/produto 
 Content-Type: application/json
 ###
 
 // Obter usuário pelo ID
 //GET http://127.0.0.1:5000/product/{id}
-GET http://127.0.0.1:5000/product/2
+GET http://127.0.0.1:5000/produto/2
 Content-Type: application/json
 ###
 

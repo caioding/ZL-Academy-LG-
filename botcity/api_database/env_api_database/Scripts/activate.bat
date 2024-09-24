@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\noturno\ZL-Academy-LG\BotCity_DXZL\api_database\env_api_database
+set VIRTUAL_ENV=C:\Users\noturno\dxzl-academy\botcity\api_database\env_api_database
 
 if not defined PROMPT set PROMPT=$P$G
 

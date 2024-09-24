@@ -1,121 +1,123 @@
 import database 
 
-# Verificar se Produto existe
-def exist_product(id):
-    exist: False
+# Função 1 - Criar produto
+def criar_produto(produto):
     try:
-        conect = database.create_db()
+        conect = database.criar_db()
         cursor = conect.cursor()
-        sql = f"SELECT * FROM product WHERE id = '{id}'"
-        cursor.execute()
-        list_product = cursor.fetchall()
-        if len(list_product) == 0:
-            exist = False
-        else:
-            exist = True
-    except Exception as ex:
-        print(f'Erro na verificacao do produto: {ex}')
-    finally:
-        cursor.close()
-        conect.close()
-    
-    return exist
-
-# Criar produto
-def create_product(product):
-    try:
-        # Manipular o banco de dados
-        conect = database.create_db()
-        cursor = conect.cursor()
-        sql = f"INSERT INTO product(descricao, unidade, quantidade, preco_real, preco_dolar) VALUES('{product['descricao']}','{product['unidade']}', '{product['quantidade']}', '{product['preco_real']}','{product['preco_dolar']}')"
+        sql = f"INSERT INTO produto(descricao, unidade, quantidade, preco_real, preco_dolar) VALUES('{produto['descricao']}','{
+            produto['unidade']}', '{produto['quantidade']}', '{produto['preco_real']}','{produto['preco_dolar']}')"
         print(sql)
         cursor.execute(sql)
         last_id = cursor.lastrowid
         conect.commit()
     except Exception as ex:
-        print(f'Erro: Falha na inclusão: {ex}')
+        print(f'Erro: Falha na execução: {ex}')
     finally:
         cursor.close()
         conect.close()
+    return last_id
 
-    return last_id 
 
-# Lista de produtos
-def list_products():
-    products = list()
+# Função 2 - Atualizar produto
+def atualizar_produto(produto):
     try:
-        conect = database.create_db()
+        conect = database.criar_db()
         cursor = conect.cursor()
-        sql = 'SELECT * FROM product ORDER BY descricao'
-        cursor.execut(sql)
-        list_product = cursor.fetchall()
-        # Tratar dados para uma estrutura JSON
-        for product in list_product:
-            products.append(
-                {
-                  'id': product[0],
-                  'descricao': product[1],
-                  'unidade': product[2],
-                  'quantidade': product[3],
-                  'preco_real': product[4],
-                  'preco_dolar': product[5]
-                }
-            )
-    except Exception as ex:
-        print(f'Erro: Listar usuario: {ex}')
-    finally:
-        cursor.close()
-        conect.close()
-    
-    return products
-
-# Obter produto por id
-def get_product_id(id):
-    products = list()
-    try:
-        conect = database.create_db()
-        cursor = conect.cursor()
-        sql = f"SELECT * FROM product WHERE id = '{id}'"
+        sql = f"UPDATE produto SET descricao = '{produto['descricao']}', unidade = '{produto['unidade']}', quantidade = '{
+            produto['quantidade']}', preco_real = '{produto['preco_real']}', preco_dolar = '{produto['preco_dolar']}' WHERE id = '{produto['id']}' "
+        print(sql)
         cursor.execute(sql)
-        list_products = cursor.fetchall()
-        # Tratar dados para uma estrutura JSON
-        for product in list_products:
-            product.append(
-                {
-                  'id': product[0],
-                  'descricao': product[1],
-                  'unidade': product[2],
-                  'quantidade': product[3],
-                  'preco_real': product[4],
-                  'preco_dolar': product[5]
-                }
-            )
-    except Exception as ex:
-        print(f'Erro: obter produto pelo id: {ex}')
-    
-    return products
-
-# Atualizar produto
-def update_product(product):
-    try:
-        # Manipular Banco de Dados
-        conect = database.create_db()
-        cursor = conect.cursor()
-        sql = f"UPDATE product SET descricao = '{product['descricao']}', unidade = '{product['unidade']}', quantidade = '{product['quantidade']}', preco_real = '{product['preco_real']}', preco_dolar = '{product['preco_dolar']}' WHERE id = '{product['id']}' "
-        cursor.execute(sql)
+        last_id = cursor.lastrowid
         conect.commit()
     except Exception as ex:
-        print(f'Erro: Falha na atualização: {ex}')
+        print(f'Erro: Falha na alteração: {ex}')
+    finally:
+        cursor.close()
+        conect.close()
+    return last_id
 
-# Deletar produto
-def delete_product(id):
+# Função 4 - Verifica se o produto existe
+def existe_produto(id):
+    existe: False
+    # criar uma tupla vazia
+    produto = ()
+    try:
+        conect = database.criar_db()
+        cursor = conect.cursor()
+        sql = f"SELECT id FROM produto WHERE id = '{id}'"
+        cursor.execute(sql)
+        produto = cursor.fetchone()
+        if produto is not None:
+            if len(produto) == 1:
+                existe = True
+            else:
+                existe = False
+        else:
+            existe = False
+
+    except Exception as ex:
+        print(f'Erro na verificacao da existencia do produto: {ex}')
+    finally:
+        cursor.close()
+        conect.close()
+
+    return existe
+
+# Função 5 - Obtem produto por ID
+def obter_produto_id(id):
+    # Declar uma tupla vazia
+    produto = ()
+    try:
+        conect = database.criar_db()
+        cursor = conect.cursor()
+        sql = f"SELECT * FROM produto WHERE id = '{id}'"
+        cursor.execute(sql)
+        produto = cursor.fetchone()
+    except Exception as ex:
+        print(f'Erro na verificacao da existencia do produto: {ex}')
+    finally:
+        cursor.close()
+        conect.close()
+    return produto
+
+# Função 6 - Lista o produto
+def lista_produto():
+    produtos = list()
+    try:
+        conect = database.criar_db()
+        cursor = conect.cursor()
+        sql = 'SELECT * FROM produto ORDER BY descricao'
+        cursor.execute(sql)
+        lista_produto = cursor.fetchall()
+        # Tratar dados para uma estrutura JSON
+        for produto in lista_produto:
+            produtos.append(
+                {
+                    'id': produto[0],
+                    'descricao': produto[1],
+                    'unidade': produto[2],
+                    'quantidade': produto[3],
+                    'preco_real': produto[4],
+                    'preco_dolar': produto[5]
+                }
+            )
+    except Exception as ex:
+        print(f'Erro: Listar produto: {ex}')
+    finally:
+        cursor.close()
+        conect.close()
+
+    return produtos
+
+
+def deletar_produto(id):
     try:
         # Manipular o banco de dados
-        conect = database.create_db()
+        conect = database.criar_db()
         cursor = conect.cursor()
-        sql = f'DELETE FROM product WHERE id = {id}'
+        sql = f'DELETE FROM produto WHERE id = {id}'
         cursor.execute(sql)
         conect.commit()
     except Exception as ex:
-        print(f'Erro: Falha em deletar produto: {ex}')
-        
+        print(f'Erro: Falha na deleção do produto: {ex}')
