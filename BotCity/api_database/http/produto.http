@@ -1,0 +1,88 @@
+// Inserir produto
+POST http://127.0.0.1:5000/product
+Content-Type: application/json
+// OBS: É necessário pular uma linha, quando existir um corpo (body) 
+
+{
+  "descricao" : "Arroz",
+  "unidade" : "Kg",
+  "quantidade" : 3,
+  "preco_real" : 5.60,
+  "preco_dolar": 25
+}
+// Utiliza-se obrigatoriamente no início da linha os simbolos: ###
+// para separar uma requisção da outra. 
+###
+
+POST http://127.0.0.1:5000/product
+Content-Type: application/json
+// OBS: É necessário pular uma linha, quando existir um corpo (body) 
+
+{
+  "descricao" : "Farinha",
+  "unidade" : "Kg",
+  "quantidade" : 2,
+  "preco_real" : 4.50,
+  "preco_dolar": 20
+}
+// Utiliza-se obrigatoriamente no início da linha os simbolos: ###
+// para separar uma requisção da outra. 
+###
+
+POST http://127.0.0.1:5000/product
+Content-Type: application/json
+// OBS: É necessário pular uma linha, quando existir um corpo (body) 
+
+{
+  "descricao" : "Feijao",
+  "unidade" : "Kg",
+  "quantidade" : 4,
+  "preco_real" : 3.50,
+  "preco_dolar": 10
+}
+// Utiliza-se obrigatoriamente no início da linha os simbolos: ###
+// para separar uma requisção da outra. 
+###
+
+//Listar todos os produtos em ordem alfabética
+GET http://127.0.0.1:5000/product 
+Content-Type: application/json
+###
+
+// Obter usuário pelo ID
+//GET http://127.0.0.1:5000/product/{id}
+GET http://127.0.0.1:5000/product/2
+Content-Type: application/json
+###
+
+// Alterar produto pelo ID
+// OBS: obrigado preencher o campo ID
+PUT http://127.0.0.1:5000/product 
+Content-Type: application/json
+// OBS: É necessário pular uma linha, quando existir um corpo (body) 
+
+{
+  "id": 2,
+  "descricao" : "Macarrao",
+  "unidade" : "Kg",
+  "quantidade" : 5,
+  "preco_real" : 6.50,
+  "preco_dolar": 4
+}
+###
+
+// Obter produto pelo ID
+GET http://localhost:5000/product/3
+Content-Type: application/json
+###
+
+// Deletar produto pelo ID
+DELETE http://127.0.0.1:5000/usuario/3
+Content-Type: application/json
+###
+
+// Listar todos os produtos em ordem alfabética
+GET http://localhost:8080/product/list 
+Content-Type: application/json
+###
+
