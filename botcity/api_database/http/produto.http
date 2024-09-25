@@ -4,11 +4,11 @@ Content-Type: application/json
 // OBS: É necessário pular uma linha, quando existir um corpo (body) 
 
 {
-    "descricao" : "Arroz",
-    "unidade" : "Kg",
-    "quantidade" : 3,
-    "preco_real" : 5.60,
-    "preco_dolar": 25
+    "descricao" : "Acai",
+    "unidade" : "Litro",
+    "quantidade" : 10,
+    "preco_real" : 12.50,
+    "preco_dolar": 0.0
 }
 // Utiliza-se obrigatoriamente no início da linha os simbolos: ###
 // para separar uma requisção da outra. 
@@ -19,11 +19,11 @@ Content-Type: application/json
 // OBS: É necessário pular uma linha, quando existir um corpo (body) 
 
 {
-  "descricao" : "Farinha",
+  "descricao" : "Tucuma",
   "unidade" : "Kg",
-  "quantidade" : 2,
-  "preco_real" : 4.50,
-  "preco_dolar": 20
+  "quantidade" : 30,
+  "preco_real" : 17.30,
+  "preco_dolar": 0.0
 }
 // Utiliza-se obrigatoriamente no início da linha os simbolos: ###
 // para separar uma requisção da outra. 
@@ -34,11 +34,11 @@ Content-Type: application/json
 // OBS: É necessário pular uma linha, quando existir um corpo (body) 
 
 {
-  "descricao" : "Feijao",
+  "descricao" : "Tapioca",
   "unidade" : "Kg",
-  "quantidade" : 4,
-  "preco_real" : 3.50,
-  "preco_dolar": 10
+  "quantidade" : 5,
+  "preco_real" : 4.70,
+  "preco_dolar": 0.0
 }
 // Utiliza-se obrigatoriamente no início da linha os simbolos: ###
 // para separar uma requisção da outra. 
@@ -77,7 +77,7 @@ Content-Type: application/json
 ###
 
 // Deletar produto pelo ID
-DELETE http://127.0.0.1:5000/produto/3
+DELETE http://127.0.0.1:5000/produto/1
 Content-Type: application/json
 ###
 
