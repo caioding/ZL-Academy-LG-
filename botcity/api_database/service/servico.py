@@ -7,6 +7,7 @@ sys.path.append(modulo)
 
 # import usuario 
 import produto
+from bot_dolar import search_dolar 
 
 # Instanciar 
 app_api = Flask('api_database')
@@ -126,30 +127,53 @@ app_api.config['JSON_SORT_KEYS'] = False
 
 @app_api.route('/produto', methods=['POST'])
 def criar_produto():
-    # Construir um Request
-    # Captura o JSON com os dados enviado pelo cliente
-    produto_json = request.json # corpo da requisição
-    id_produto=0
+    produto_json = request.json
     try:
+    
+        produto_json['quantidade'] = float(produto_json['quantidade'])
+        produto_json['preco_real'] = float(produto_json['preco_real'])
+        produto_json['preco_dolar'] = search_dolar()
+
         id_produto = produto.criar_produto(produto_json)
         sucesso = True
         _mensagem = 'Produto inserido com sucesso'
     except Exception as ex:
         sucesso = False
-        _mensagem = f'Erro: Inclusao do produto: {ex}'
-    
+        _mensagem = f'Erro: Inclusão do produto: {ex}'
+        id_produto = None 
+
     return make_response(
-        # Formata a resposta no formato JSON
         jsonify(
-                status = sucesso,
-                mensagem = _mensagem ,
-                id = id_produto
+            status=sucesso,
+            mensagem=_mensagem,
+            id=id_produto
+        )
+    )
+
+@app_api.route('/produto/atualizar-preco-dolar', methods=['PUT'])
+def atualizar_preco_dolar():
+    produto_json = request.json 
+    try:
+        novo_preco_dolar = search_dolar() 
+        produto_json['preco_dolar'] = novo_preco_dolar 
+
+        produto.atualizar_preco_dolar(produto_json)
+        sucesso = True
+        _mensagem = 'Preço em dólar atualizado com sucesso'
+    except Exception as ex:
+        sucesso = False
+        _mensagem = f'Erro: Atualização do preço em dólar: {ex}'
+
+    return make_response(
+        jsonify(
+            status=sucesso,
+            mensagem=_mensagem
         )
     )
 
 @app_api.route('/produto', methods=['PUT'])
 def atualizar_produto():
-    produto_json = request.json # corpo da requisição
+    produto_json = request.json 
     try:
         produto.atualizar_produto(produto_json)
         sucesso = True
@@ -165,6 +189,7 @@ def atualizar_produto():
         )
     )
 
+
 @app_api.route('/produto', methods=['GET'])
 def lista_produto():
     lista_produto = list()
@@ -176,9 +201,7 @@ def lista_produto():
         sucesso = True
         _mensagem = 'Lista de produto'
 
-    # Construir um Response
     return make_response(
-        # Formata a resposta no formato JSON
         jsonify(
                 status = sucesso, 
                 mensagem = _mensagem,
@@ -197,9 +220,7 @@ def get_obter_produto_id(id):
         sucesso = True
         _mensagem = 'produto cadastrado'
 
-    # Construir um Response
     return make_response(
-        # Formata a resposta no formato JSON
         jsonify(
                 status = sucesso, 
                 mensagem = _mensagem,
@@ -218,14 +239,10 @@ def deletar_produto(id):
         _mensagem = f'Erro: Exclusão de produto: {ex}'
     
     return make_response(
-        # Formata a resposta no formato JSON
         jsonify(
                 status = sucesso,
                 mensagem = _mensagem
         )
     ) 
-   
-# -- Fim : Serviços da api produtos ---------------------
 
-# Levantar/Executar API REST: api_database
 app_api.run()
