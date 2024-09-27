@@ -269,13 +269,13 @@ def obter_produto_id(id):
     # Declarando uma tupla vazia
     produto_id = ()
     sucesso = False
-    if produto.existe_produto(id) == True:
-        produto_id = obter_produto_id(id)
+    try:
+        produto_id = produto.obter_produto_id(id)  # Chame a função obter_produto_id do módulo produto
         sucesso = True
         _mensagem = 'Produto encontrado com sucesso'
-    else:
-        sucesso = False
-        _mensagem = 'Produto nao existe'
+    except Exception as ex:
+        _mensagem = f'Erro: {ex}'
+    
     # Construir um Response
     return make_response(
         # Formata a resposta no formato JSON
