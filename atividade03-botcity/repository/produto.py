@@ -20,6 +20,37 @@ def criar_produto(produto):
         conect.close()
 
     return last_id 
+
+# Criar produto funcionando no linux
+# def criar_produto(produto):
+#     try:
+#         # Manipular o banco de dados
+#         conect = database.criar_db()
+#         cursor = conect.cursor()
+        
+#         # Remove leading/trailing spaces from string values
+#         descricao = produto['descricao'].strip()
+#         unidade = produto['unidade'].strip()
+#         quantidade = produto['quantidade']
+#         preco_real = float(produto['preco_real'])
+#         preco_dolar = float(produto['preco_dolar'])
+        
+#         sql = f"""
+#             INSERT INTO produto(descricao, unidade, quantidade, preco_real, preco_dolar)
+#             VALUES('{descricao}', '{unidade}', '{quantidade}', '{preco_real}', '{preco_dolar}')
+#         """
+#         print(sql)
+#         cursor.execute(sql)
+#         last_id = cursor.lastrowid
+#         conect.commit()
+#     except Exception as ex:
+#         print(f'Erro: Falha na inclusão: {ex}')
+#         last_id = None  # Certifique-se de inicializar last_id
+#     finally:
+#         cursor.close()
+#         conect.close()
+
+#     return last_id
 # Fim: criar_produto(produto)
 
 # Atualizar produto
