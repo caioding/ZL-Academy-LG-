@@ -1,5 +1,3 @@
-pip install botcity-http-plugin
-
 # Cria o ammbiente
 python -m venv env_api_database
 
