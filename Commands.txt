@@ -9,3 +9,6 @@ python -m cookiecutter https://github.com/botcity-dev/bot-python-template/archiv
 conda create --name nome_projeto_robo python=3.10
 pip install -r requirements.txt
 pip freeze > requirements.txt
+
+Remover ambiente no anaconda
+    conda remove --name botproduto --all
