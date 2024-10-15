@@ -101,9 +101,6 @@ def main():
     #     message="Task Finished OK."
     # )
 
-
-
-
 def not_found(label):
     print(f"Element not found: {label}")
 
