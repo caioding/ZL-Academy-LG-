@@ -33,13 +33,20 @@ from botcity.plugins.http import BotHttpPlugin
 
 # Add Import for formulario.py
 from produto_poo import Produto
+# Add for path OS
+import os
 
 # Disable errors if we are not connected to Maestro
 BotMaestroSDK.RAISE_NOT_CONNECTED = False
 
+# Relative path for each OS
+caminho_arquivo = os.path.join(os.path.dirname(__file__), "forms", "produto.html")
+
 # Add Function for bot input forms
 def preencher_formulario_produto(bot, produto):
-    bot.browse("file:///home/caio/dxzl-academy/bot_produto/forms/produto.html")
+    # bot.browse("file:///home/caio/dxzl-academy/bot_produto/forms/produto.html")
+    # bot.browse(" file:///C:/Users/noturno/dxzl-academy/bot_produto/forms/produto.html")
+    bot.browse("file://" + caminho_arquivo)
     bot.wait(3000)
     bot.find_element("nome", By.ID).send_keys(produto.nome)
     bot.find_element("preco", By.ID).send_keys(produto.preco)
@@ -52,7 +59,6 @@ def preencher_formulario_produto(bot, produto):
     else:
         print("Error: Could not find base_button element.")
         print(bot.page_source) 
-
 # End funcionts for bot input forms
 
 def main():
