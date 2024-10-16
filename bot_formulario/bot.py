@@ -39,7 +39,7 @@ BotMaestroSDK.RAISE_NOT_CONNECTED = False
 
 # Functions for bot input forms
 def preencher_formulario_base(bot, formulario):
-    bot.browse("file:///home/caio/dxzl-academy/bot_test/forms/base.html")
+    bot.browse("file:///home/caio/dxzl-academy/bot_formulario/forms/base.html")
     bot.wait(3000)
     bot.find_element("nome_input", By.ID).send_keys(formulario.nome)
     bot.find_element("sexo_input", By.ID).send_keys(formulario.sexo)
@@ -54,7 +54,7 @@ def preencher_formulario_base(bot, formulario):
         print(bot.page_source) 
 
 def preencher_formulario_contato(bot, formulario):
-    bot.browse("file:///home/caio/dxzl-academy/bot_test/forms/contato.html")
+    bot.browse("file:///home/caio/dxzl-academy/bot_formulario/forms/contato.html")
     bot.wait(3000)
     bot.find_element("email_input", By.ID).send_keys(formulario.email)
     bot.find_element("mensagem_input", By.ID).send_keys(formulario.mensagem)
@@ -67,7 +67,7 @@ def preencher_formulario_contato(bot, formulario):
         print(bot.page_source)
 
 def preencher_formulario_login(bot, formulario):
-    bot.browse("file:///home/caio/dxzl-academy/bot_test/forms/login.html")
+    bot.browse("file:///home/caio/dxzl-academy/bot_formulario/forms/login.html")
     bot.wait(3000)
     bot.find_element("usuario_input", By.ID).send_keys(formulario.usuario)
     bot.find_element("senha_input", By.ID).send_keys(formulario.senha)
