@@ -31,15 +31,23 @@ from botcity.maestro import *
 from webdriver_manager.chrome import ChromeDriverManager
 from botcity.plugins.http import BotHttpPlugin
 
+# Add for path OS
+import os
+
 # Import for formulario.py
 from formulario import FormularioContato, FormularioLogin, FormBase
 
 # Disable errors if we are not connected to Maestro
 BotMaestroSDK.RAISE_NOT_CONNECTED = False
 
+# Relative path for each OS
+def get_caminho_arquivo(nome_arquivo):
+    return os.path.join(os.path.dirname(__file__), "forms", nome_arquivo)
+
 # Functions for bot input forms
 def preencher_formulario_base(bot, formulario):
-    bot.browse("file:///home/caio/dxzl-academy/bot_formulario/forms/base.html")
+    caminho_arquivo = get_caminho_arquivo("base.html")
+    bot.browse("file://" + caminho_arquivo)
     bot.wait(3000)
     bot.find_element("nome_input", By.ID).send_keys(formulario.nome)
     bot.find_element("sexo_input", By.ID).send_keys(formulario.sexo)
@@ -54,7 +62,8 @@ def preencher_formulario_base(bot, formulario):
         print(bot.page_source) 
 
 def preencher_formulario_contato(bot, formulario):
-    bot.browse("file:///home/caio/dxzl-academy/bot_formulario/forms/contato.html")
+    caminho_arquivo = get_caminho_arquivo("contato.html")
+    bot.browse("file://" + caminho_arquivo)
     bot.wait(3000)
     bot.find_element("email_input", By.ID).send_keys(formulario.email)
     bot.find_element("mensagem_input", By.ID).send_keys(formulario.mensagem)
@@ -67,7 +76,8 @@ def preencher_formulario_contato(bot, formulario):
         print(bot.page_source)
 
 def preencher_formulario_login(bot, formulario):
-    bot.browse("file:///home/caio/dxzl-academy/bot_formulario/forms/login.html")
+    caminho_arquivo = get_caminho_arquivo("login.html")
+    bot.browse("file://" + caminho_arquivo)
     bot.wait(3000)
     bot.find_element("usuario_input", By.ID).send_keys(formulario.usuario)
     bot.find_element("senha_input", By.ID).send_keys(formulario.senha)
