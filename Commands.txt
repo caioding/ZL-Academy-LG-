@@ -12,3 +12,6 @@ pip freeze > requirements.txt
 
 Remover ambiente no anaconda
     conda remove --name botproduto --all
+
+Atualizar o pip
+    python.exe -m pip install --upgrade pip
