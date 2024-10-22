@@ -15,3 +15,6 @@ Remover ambiente no anaconda
 
 Atualizar o pip
     python.exe -m pip install --upgrade pip
+
+Configurar editor padrão do git (substituir nano por vim ou qualquer outro)
+    git config --global core.editor nano
