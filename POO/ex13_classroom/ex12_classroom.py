@@ -152,7 +152,7 @@ def simular_mes_de_pagamentos(funcionario: Horista, mes, ano):
 
 def main():
     # Criando funcionários
-    horista = Horista("João", 1234, 12, 10)
+    horista = Horista("João", 1234, 200, 10)
     mensalista = Mensalista("Maria", 5678, 2000)
     comissionado = Comissionado("Pedro", 9012, 1500, 5000, 0.1)
     horista2 = Horista("Luiz", 1111, 250, 12)

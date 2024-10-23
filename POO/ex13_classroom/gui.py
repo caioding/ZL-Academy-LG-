@@ -23,12 +23,13 @@ class Mensalista(Funcionario):
         return self.salario
 
 class Comissionado(Funcionario):
-    def __init__(self, nome, matricula, salario, vendas):
+    def __init__(self, nome, matricula, salario, vendas, taxa_comissao):
         super().__init__(nome, matricula, salario)
         self.vendas = vendas
+        self.taxa_comissao = taxa_comissao
 
     def calcular_salario(self):
-        return self.salario + (self.vendas * 0.1)
+        return self.salario + (self.vendas * self.taxa_comissao)
 
 class App(tk.Tk):
     def __init__(self):
@@ -82,6 +83,9 @@ class App(tk.Tk):
         self.label_vendas = tk.Label(self.frame_info_adicional, text="Vendas:")
         self.entry_vendas = tk.Entry(self.frame_info_adicional)
 
+        self.label_taxa_comissao = tk.Label(self.frame_info_adicional, text="Taxa da Comissão:")
+        self.entry_taxa_comissao = tk.Entry(self.frame_info_adicional)
+
         # Frame para os botões
         self.frame_botoes = tk.Frame(self)
         self.frame_botoes.pack(padx=10, pady=10)
@@ -108,12 +112,19 @@ class App(tk.Tk):
         for widget in self.frame_info_adicional.winfo_children():
             widget.pack_forget()
 
+        # Muda o texto do campo de salário
         if tipo == "Horista":
             self.label_horas_trabalhadas.pack(side=tk.LEFT)
             self.entry_horas_trabalhadas.pack(side=tk.LEFT)
+            self.label_salario.config(text="Salário por Hora:")
+        elif tipo == "Mensalista":
+            self.label_salario.config(text="Salário Mensal:")
         elif tipo == "Comissionado":
             self.label_vendas.pack(side=tk.LEFT)
             self.entry_vendas.pack(side=tk.LEFT)
+            self.label_taxa_comissao.pack(side=tk.LEFT)
+            self.entry_taxa_comissao.pack(side=tk.LEFT)
+            self.label_salario.config(text="Salário Base:")
 
     def cadastrar_funcionario(self):
         nome = self.entry_nome.get()
@@ -129,7 +140,8 @@ class App(tk.Tk):
             funcionario = Mensalista(nome, matricula, salario)
         elif tipo == "Comissionado":
             vendas = float(self.entry_vendas.get())
-            funcionario = Comissionado(nome, matricula, salario, vendas)
+            taxa_comissao = float(self.entry_taxa_comissao.get())
+            funcionario = Comissionado(nome, matricula, salario, vendas, taxa_comissao)
 
         self.funcionarios.append(funcionario)
         messagebox.showinfo("Sucesso", f"Funcionário {nome} cadastrado com sucesso!")
@@ -152,6 +164,7 @@ class App(tk.Tk):
         self.entry_salario.delete(0, tk.END)
         self.entry_horas_trabalhadas.delete(0, tk.END)
         self.entry_vendas.delete(0, tk.END)
+        self.entry_taxa_comissao.delete(0, tk.END)
 
 if __name__ == "__main__":
     app = App()
