@@ -68,7 +68,7 @@ class App(tk.Tk):
         self.label_tipo.pack(side=tk.LEFT)
         self.tipo_var = tk.StringVar()
         self.tipo_var.set("Horista")
-        self.option_tipo = tk.OptionMenu(self.frame_tipo, self.tipo_var, "Horista", "Mensalista", "Comissionado", command=self.alterar_campos)
+        self.option_tipo = tk.OptionMenu(self.frame_tipo, self.tipo_var, "Horista", "Mensalista", "Comissionado")
         self.option_tipo.pack(side=tk.LEFT)
 
         # Frame para as informações adicionais
@@ -77,10 +77,14 @@ class App(tk.Tk):
 
         # Campos adicionais para Horista e Comissionado
         self.label_horas_trabalhadas = tk.Label(self.frame_info_adicional, text="Horas Trabalhadas:")
+        self.label_horas_trabalhadas.pack(side=tk.LEFT)
         self.entry_horas_trabalhadas = tk.Entry(self.frame_info_adicional)
+        self.entry_horas_trabalhadas.pack(side=tk.LEFT)
 
         self.label_vendas = tk.Label(self.frame_info_adicional, text="Vendas:")
+        self.label_vendas.pack(side=tk.LEFT)
         self.entry_vendas = tk.Entry(self.frame_info_adicional)
+        self.entry_vendas.pack(side=tk.LEFT)
 
         # Frame para os botões
         self.frame_botoes = tk.Frame(self)
@@ -96,24 +100,6 @@ class App(tk.Tk):
         # Text widget para exibir a lista de funcionários
         self.text_lista = tk.Text(self, height=10, width=100)
         self.text_lista.pack(padx=10, pady=10)
-
-        # Inicializa os campos de entrada de acordo com o tipo de funcionário
-        self.alterar_campos()
-
-    def alterar_campos(self, *args):
-        """Exibe ou oculta campos adicionais com base no tipo de funcionário selecionado."""
-        tipo = self.tipo_var.get()
-        
-        # Limpa o frame de informações adicionais
-        for widget in self.frame_info_adicional.winfo_children():
-            widget.pack_forget()
-
-        if tipo == "Horista":
-            self.label_horas_trabalhadas.pack(side=tk.LEFT)
-            self.entry_horas_trabalhadas.pack(side=tk.LEFT)
-        elif tipo == "Comissionado":
-            self.label_vendas.pack(side=tk.LEFT)
-            self.entry_vendas.pack(side=tk.LEFT)
 
     def cadastrar_funcionario(self):
         nome = self.entry_nome.get()
@@ -143,7 +129,8 @@ class App(tk.Tk):
             self.text_lista.insert(tk.END, "Nenhum funcionário cadastrado.\n")
         else:
             for func in self.funcionarios:
-                self.text_lista.insert(tk.END, f"Nome: {func.nome}, Matrícula: {func.matricula}, Salário: R$ {func.calcular_salario():.2f}\n")
+                salario = func.calcular_salario()
+                self.text_lista.insert(tk.END, f"Nome: {func.nome}, Matrícula: {func.matricula}, Salário: R$ {salario:.2f}\n")
 
     def limpar_campos(self):
         """Função auxiliar para limpar os campos após o cadastro"""
