@@ -1,6 +1,6 @@
-from classes.autor import Autor
-from classes.livro import Livro
-from classes.biblioteca import Biblioteca
+from model.autor import Autor
+from model.livro import Livro
+from model.biblioteca import Biblioteca
 
 def main():
     # Criando instâncias de Autor
