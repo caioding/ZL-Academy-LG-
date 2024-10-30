@@ -1,5 +1,5 @@
 # classes/comissionado.py
-from models.funcionario import Funcionario
+from classes.funcionario import Funcionario
 
 class Comissionado(Funcionario):
     def __init__(self, nome, matricula, salario_base, vendas, taxa_comissao):
