@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, ttk
 
 class Funcionario(ABC):
     def __init__(self, nome: str, matricula: int):
@@ -81,8 +81,7 @@ class Mensalista(Funcionario):
 
     def calcular_salario(self):
         return self.__salario_mensal
-
-
+    
 class Comissionado(Funcionario):
     def __init__(self, nome: str, matricula: int, salario_base: float, vendas: float, taxa_comissao: float):
         super().__init__(nome, matricula)
@@ -130,13 +129,23 @@ class Comissionado(Funcionario):
     def calcular_salario(self):
         return self.__salario_base + (self.__vendas * self.__taxa_comissao)
 
+def centralizar_janela(root, width, height):
+    largura_tela = root.winfo_screenwidth()
+    altura_tela = root.winfo_screenheight()
+    pos_x = (largura_tela // 2) - (width // 2)
+    pos_y = (altura_tela // 2) - (height // 2)
+    root.geometry(f"{width}x{height}+{pos_x}+{pos_y}")
+    root.resizable(False, False)
 
 class App(tk.Tk):
+    
     def __init__(self):
         super().__init__()
         self.title("Cadastro de Funcionários")
         self.geometry("800x600")
         self.resizable(True, True)
+        centralizar_janela(self, 800, 600)
+
 
         self.funcionarios = []
 
