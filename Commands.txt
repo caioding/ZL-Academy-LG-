@@ -29,3 +29,8 @@ pip freeze | xargs pip uninstall -y
 
 Reverter o commit mais recente, mantendo as alterações no seu diretório de trabalho:
 git reset --soft HEAD~1
+
+git commit com o nano
+    ctrl + o para salvar
+    Pressiona Enter
+    ctrl + x para sair
