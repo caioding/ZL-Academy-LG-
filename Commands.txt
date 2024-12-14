@@ -26,3 +26,6 @@ Configurar editor padrão do git (substituir nano por vim ou qualquer outro)
 
 Desinstalar todos os pacotes pip
 pip freeze | xargs pip uninstall -y
+
+Reverter o commit mais recente, mantendo as alterações no seu diretório de trabalho:
+git reset --soft HEAD~1
