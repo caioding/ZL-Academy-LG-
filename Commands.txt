@@ -8,6 +8,9 @@ python -m venv env_api_database
 python -m pip install --upgrade cookiecutter
 python -m cookiecutter https://github.com/botcity-dev/bot-python-template/archive/v2.zip
 
+# Criar o ambiente anaconda
+conda create --name nome_robo python=3.10
+
 # Criar ambiente virtual conda
 conda create --name nome_projeto_robo python=3.10
 
